@@ -20,9 +20,19 @@ Date: August 30, 2024
 import os
 import pandas as pd
 
-# find the file list of PO#s
-path_po_numbers = os.path.expanduser('~/Desktop/PO#s')
-path_invoices = os.path.expanduser('~/Desktop/excel_files')
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the paths from environment variables
+path_po_numbers = os.getenv('PO_NUMBERS_PATH')
+path_invoices = os.getenv('INVOICES_PATH')
+
+# Print paths for verification (optional)
+print(f"PO Numbers Path: {path_po_numbers}")
+print(f"Invoices Path: {path_invoices}")
 
 # Generate list of available PO#s from the file directory
 arr1 = [int(po_number) for po_number in os.listdir(
